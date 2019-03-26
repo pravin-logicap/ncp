@@ -1,30 +1,23 @@
 var MongoClient = require('mongodb').MongoClient
 var responseGenrator = require("./responseGenrator");
+var config = require("../config");
 exports.getDashboardData = function () {
     try {
         return new Promise(function (resolve, reject) {
-            MongoClient.connect('mongodb://localhost:27017', function (err, client) {
+            global.db.collection('dashboard').find().toArray(function (err, result) {
                 if (err) {
-                    console.log("Error in connection ", err);
-                    reject(responseGenrator.responseGenrator(404, "Error while connecting to database ", ex));
+                    console.log("Error occuered at DB operation ", err);
+                    resolve(responseGenrator.responseGenrator(400, "Database failed for read dashboard data", err));
+                    return;
+                } else {
+                    console.log("Data found for dashboard s");
+                    let count = result.length;
+                    let data = {};
+                    data["result"] = result;
+                    data["count"] = count;
+                    resolve(responseGenrator.responseGenrator(200, "Data found", data));
                     return;
                 }
-                var db = client.db('sample');
-                db.collection('dashboard').find().toArray(function (err, result) {
-                    if (err) {
-                        console.log("Error occuered at DB operation ", err);
-                        resolve(responseGenrator.responseGenrator(400, "Database failed for read dashboard data", err));
-                        return;
-                    } else {
-                        console.log("Data found for dashboard ");
-                        let count = result.length;
-                        let data = {};
-                        data["result"] = result;
-                        data["count"] = count;
-                        resolve(responseGenrator.responseGenrator(200, "Data found", data));
-                        return;
-                    }
-                })
             })
         })
     } catch (ex) {
@@ -36,14 +29,7 @@ exports.getDashboardData = function () {
 exports.newsReports = function (indexRefernceNo) {
     try {
         return new Promise(function (resolve, reject) {
-            MongoClient.connect('mongodb://localhost:27017', function (err, client) {
-                if (err) {
-                    console.log("Error in connection ", err);
-                    reject(responseGenrator.responseGenrator(404, "Error while connecting to database ", ex));
-                    return;
-                }
-                var db = client.db('sample');
-                db.collection('newsReports').find({ "indexRefernceNo": indexRefernceNo }).toArray(function (err, result) {
+                global.db.collection('newsReports').find({ "indexRefernceNo": indexRefernceNo }).toArray(function (err, result) {
                     if (err) {
                         console.log("Error occuered at DB operation ", err);
                         resolve(responseGenrator.responseGenrator(400, "Database failed for read dashboard data", err));
@@ -58,7 +44,6 @@ exports.newsReports = function (indexRefernceNo) {
                         return;
                     }
                 })
-            })
         })
     } catch (ex) {
         reject(responseGenrator.responseGenrator(404, "Exception occuered ", ex));
@@ -69,15 +54,8 @@ exports.newsReports = function (indexRefernceNo) {
 exports.registerUser = function (reqObj) {
     try {
         return new Promise(function (resolve, reject) {
-            MongoClient.connect('mongodb://localhost:27017', function (err, client) {
-                if (err) {
-                    console.log("Error in connection ", err);
-                    reject(responseGenrator.responseGenrator(404, "Error while connecting to database ", ex));
-                    return;
-                }
-                var db = client.db('sample');
                 let queryCriteria = registrationOrchestration(reqObj);
-                db.collection('userRegistrations').update(queryCriteria.findCriteria, queryCriteria.insertCriteria, {upsert: true}, function (err, result) {
+                global.db.collection('userRegistrations').update(queryCriteria.findCriteria, queryCriteria.insertCriteria, {upsert: true}, function (err, result) {
                     if (err) {
                         console.log("Error occuered at DB operation ", err);
                         resolve(responseGenrator.responseGenrator(400, "Database failed for Write dashboard data", err));
@@ -88,7 +66,6 @@ exports.registerUser = function (reqObj) {
                         return;
                     }
                 })
-            })
         })
     } catch (ex) {
         reject(responseGenrator.responseGenrator(404, "Exception occuered ", ex));
@@ -118,14 +95,7 @@ function registrationOrchestration(reqObj) {
 exports.getRegisterdUser = function (mobileNo) {
     try {
         return new Promise(function (resolve, reject) {
-            MongoClient.connect('mongodb://localhost:27017', function (err, client) {
-                if (err) {
-                    console.log("Error in connection ", err);
-                    reject(responseGenrator.responseGenrator(404, "Error while connecting to database ", ex));
-                    return;
-                }
-                var db = client.db('sample');
-                db.collection('userRegistrations').find({ "mobileNo": mobileNo }).toArray(function (err, result) {
+                global.db.collection('userRegistrations').find({ "mobileNo": mobileNo }).toArray(function (err, result) {
                     if (err) {
                         console.log("Error occuered at DB operation ", err);
                         resolve(responseGenrator.responseGenrator(400, "Database failed for read dashboard data", err));
@@ -140,7 +110,6 @@ exports.getRegisterdUser = function (mobileNo) {
                         return;
                     }
                 })
-            })
         })
     } catch (ex) {
         reject(responseGenrator.responseGenrator(404, "Exception occuered ", ex));

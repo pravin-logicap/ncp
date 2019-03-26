@@ -19,7 +19,7 @@ router.get("/dashboard", function (req, res) {
 });
 router.get("/newsReports", function (req, res) {
   let indexNo = req.param("indexNo");
-  console.log("index 0",indexNo)
+  console.log("index ",indexNo)
   dashboardService.newsReports(parseInt(indexNo))
     .then(function (response) {
       console.log("Sending response success");

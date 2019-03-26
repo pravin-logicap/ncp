@@ -60,7 +60,14 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
+console.log("Connecting to db ");
+global.db = null;
+require("./database").connectToMongo().then(function(res){
+  console.log("Connection success: ");
+  global.db = res;
+}).catch(function(err){
+  console.log("Connection failed : ",err)
+});
 /**
  * Normalize a port into a number, string, or false.
  */
