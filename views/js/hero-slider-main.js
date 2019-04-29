@@ -30,7 +30,7 @@ jQuery(document).ready(function($){
 				// if it's not already selected
 				var selectedPosition = selectedItem.index(),
 					activePosition = slidesWrapper.find('li.selected').index();
-				
+				alert("chdgcdcgbjgdcsadcjhdcjcjdgc .>>>>>>>>>>>>>>");
 				if( activePosition < selectedPosition) {
 					nextSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
 				} else {
@@ -50,6 +50,8 @@ jQuery(document).ready(function($){
 
 	function nextSlide(visibleSlide, container, pagination, n){
 		visibleSlide.removeClass('selected from-left from-right').addClass('is-moving').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+			alert(">>>>>>>>>>>>>>>>  ");
+			console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 			visibleSlide.removeClass('is-moving');
 		});
 
