@@ -54,45 +54,35 @@ head
             .tm-img-gallery.gallery-one
               // Gallery One pop up connected with JS code below
               .tm-img-gallery-info-container
-               | alert(#{JSON.stringify(response)});
-               video(width='800', height='250', controls='true')
-               source(src='https://www.youtube.com/embed/tTNZn-facLM',type='video/ogg')
+               iframe(width='800', height='350', align='right', src=dashboard.breakingNews.imaageVideoUrl)
               .grid-item
                 figure.effect-bubba
-                  img.img-fluid.tm-img(src='img/tm-img-01-tn.jpg' alt='Image')
+                  img.img-fluid.tm-img(src=dashboard.indexes[0].imageVideoUrl alt='Image')
                   figcaption
                     h2.tm-figure-title
-                      | Image 
-                      span One
-                    p.tm-figure-description Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    a(href='img/tm-img-01.jpg') View more
+                      | #{dashboard.indexes[0].title}
+                    a(href=dashboard.indexes[0].imageVideoUrl) View more
               .grid-item
                 figure.effect-bubba
-                  img.img-fluid.tm-img(src='img/tm-img-02-tn.jpg' alt='Image')
+                  img.img-fluid.tm-img(src=dashboard.indexes[1].imageVideoUrl alt='Image')
                   figcaption
                     h2.tm-figure-title
-                      | Image 
-                      span Two
-                    p.tm-figure-description Maecenas purus sem, lobortis id odio in sapien.
-                    a(href='img/tm-img-02.jpg') View more
+                      | #{dashboard.indexes[1].title}
+                    a(href=dashboard.indexes[1].imageVideoUrl) View more
               .grid-item
                 figure.effect-bubba
-                  img.img-fluid.tm-img(src='img/tm-img-03-tn.jpg' alt='Image')
+                  img.img-fluid.tm-img(src=dashboard.indexes[2].imageVideoUrl alt='Image')
                   figcaption
                     h2.tm-figure-title
-                      | Image 
-                      span Three
-                    p.tm-figure-description Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    a(href='img/tm-img-03.jpg') View more
+                      | #{dashboard.indexes[2].title}
+                    a(href=dashboard.indexes[2].imageVideoUrl) View more
               .grid-item
                 figure.effect-bubba
-                  img.img-fluid.tm-img(src='img/tm-img-04-tn.jpg' alt='Image')
+                  img.img-fluid.tm-img(src=dashboard.indexes[3].imageVideoUrl alt='Image')
                   figcaption
                     h2.tm-figure-title
-                      | Image 
-                      span Four
-                    p.tm-figure-description Maecenas purus sem, lobortis id odio in sapien.
-                    a(href='img/tm-img-04.jpg') View more
+                      | #{dashboard.indexes[3].title}
+                    a(href=dashboard.indexes[3].imageVideoUrl) View more
               //.grid-item
                 figure.effect-bubba
                   img.img-fluid.tm-img(src='img/tm-img-05-tn.jpg' alt='Image')
