@@ -45,23 +45,23 @@ head
               a.nav-link(href='#0' data-no='4') Our Team
             //li.nav-item
               a.nav-link(href='#0' data-no='5') Keep in touch
+  .cd-breaking            
+    iframe.frame-css(src=dashboard.breakingNews.imaageVideoUrl style="float:center")
   ul.cd-hero-slider
     // Page 1 Gallery One
     li.selected
       .cd-full-width
-        .container-fluid.js-tm-page-content(data-page-no='1' data-page-type='gallery')
+        .container-fluid.js-tm-page-content(data-page-no='1' data-page-type='gallery' top="0px")
           .tm-img-gallery-container
             .tm-img-gallery.gallery-one
               // Gallery One pop up connected with JS code below
-              .tm-img-gallery-info-container
-               iframe(src=dashboard.breakingNews.imaageVideoUrl)
-              .grid-item
+              .tm-img-gallery-info-container(height='200px' width='200px')
+              .grid-item(onclick='imageSelected(0)')
                 figure.effect-bubba
-                  img.img-fluid.tm-img(src=dashboard.indexes[0].imageVideoUrl alt='Image')
+                  img.img-fluid.tm-img(src=dashboard.indexes[0].imageVideoUrl alt='Image', onclick='imageSelected')
                   figcaption
                     h2.tm-figure-title
                       | #{dashboard.indexes[0].title}
-                    a(href=dashboard.indexes[0].imageVideoUrl) View more
               .grid-item
                 figure.effect-bubba
                   img.img-fluid.tm-img(src=dashboard.indexes[1].imageVideoUrl alt='Image')
@@ -283,6 +283,17 @@ script(src='js/hero-slider-main.js')
 script(src='js/jquery.magnific-popup.min.js')
 // Magnific popup (http://dimsemenov.com/plugins/magnific-popup/)
 script.
+  function imageSelected(index) {
+    var jqxhr = $.get( "/newsReports?indexNo="+(index+1), function(res) {
+    })
+      .done(function(res) {
+        window.location.href = "/newsReports?indexNo="+(index+1);
+        //alert( "second success "+JSON.stringify(res)  );
+      })
+      .fail(function() {
+        alert( "error" );
+      });
+  }
   function adjustHeightOfPage(pageNo) {
   var offset = 80;
   var pageContentHeight = 0;

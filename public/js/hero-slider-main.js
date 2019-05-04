@@ -24,6 +24,7 @@ jQuery(document).ready(function($){
 		
 		//change visible slide
 		sliderNav.on('click', 'li', function(event){
+			
 			event.preventDefault();
 			var selectedItem = $(this);
 			if(!selectedItem.hasClass('selected')) {
@@ -36,7 +37,7 @@ jQuery(document).ready(function($){
 				} else {
 					prevSlide(slidesWrapper.find('.selected'), slidesWrapper, sliderNav, selectedPosition);
 				}
-
+				
 				//this is used for the autoplay
 				visibleSlidePosition = selectedPosition;
 
@@ -44,6 +45,10 @@ jQuery(document).ready(function($){
 				updateNavigationMarker(navigationMarker, selectedPosition+1);
 				//reset autoplay
 				setAutoplay(slidesWrapper, slidesNumber, autoPlayDelay);
+			}
+			var selectedPosition = selectedItem.index();
+			if(selectedPosition == 0){
+				window.location.href = "/dashboard";
 			}
 		});
 	}

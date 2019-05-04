@@ -145,10 +145,23 @@ Slider
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.cd-hero-slider {
+.cd-breaking {
   position: relative;
-  height: 360px;
+  top: 120px;
+  height: 300px;
+  background-color: #0275d8;
+  z-index: 1;
+}
+.frame-css {
+  height: 300px;
+  width: 500px;
+  position: relative;
+  z-index: 1;
+  left:30%;
+}
+.cd-hero-slider {
+  
+  height: 300px;
   overflow: hidden;
 }
 .cd-hero-slider li {
@@ -156,7 +169,7 @@ Slider
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   min-height: 100%;
   -webkit-transform: translateX(100%);
   -moz-transform: translateX(100%);
@@ -254,8 +267,8 @@ Single slide style
 .cd-hero-slider .cd-img-container img {
   position: absolute;
   left: 50%;
-  top: 50%;
-  bottom: auto;
+  top: 0%;
+  bottom: 0%;
   right: auto;
   -webkit-transform: translateX(-50%) translateY(-50%);
   -moz-transform: translateX(-50%) translateY(-50%);
