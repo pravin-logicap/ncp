@@ -48,7 +48,9 @@ jQuery(document).ready(function($){
 			}
 			var selectedPosition = selectedItem.index();
 			if(selectedPosition == 0){
+				//$('.cd-breaking').visible();
 				window.location.href = "/dashboard";
+				$('.cd-breaking').visibility = 'visible';
 			}
 		});
 	}

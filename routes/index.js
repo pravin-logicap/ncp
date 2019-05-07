@@ -31,7 +31,8 @@ router.get("/newsReports", function (req, res) {
     .then(function (response) {
       console.log("Sending response success");
        //res.send(response);
-      res.render('newsDetails', {response});
+       //let dummyData = {"status":200,"msg":"Data found","response_data":{"result":[{"_id":"5c988c4f948cc0b2b704970f","newsRefernceNo":"1","indexRefernceNo":1,"breakingNews":{"title":"","imaageVideoUrl":"https://www.loksatta.com/","shortDescription":"सुप्रिया सुळे यांनी लोकसभेत मांडले खासगी विधेयक, कर्मचाऱ्यांना मिळणार विशेष अधिकार","longDescription":"","dateAndTime":"1553501254"}},{"_id":"5c98b325948cc0b2b704f71e","newsRefernceNo":"2","indexRefernceNo":1,"breakingNews":{"title":"","imaageVideoUrl":"https://www.bbc.com/marathi/india-48166368","shortDescription":"सुप्रिया सुळे यांनी लोकसभेत मांडले खासगी विधेयक, कर्मचाऱ्यांना मिळणार विशेष अधिकार","longDescription":"","dateAndTime":"1553501254"}}],"count":2}};
+      res.render('newsDetails', {"dummyData" : response});
     })
     .catch(function (error) {
       console.log("Error occuered ");

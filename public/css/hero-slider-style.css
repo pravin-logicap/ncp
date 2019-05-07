@@ -159,6 +159,18 @@ Slider
   z-index: 1;
   left:30%;
 }
+.cd-news {
+  position: relative;
+  top: 120px;
+  height: 500px;
+  background-color: red;
+  z-index: 1;
+}
+.frame-news {
+  position: relative;
+  height: 100%;
+  width: 100%; 
+}
 .cd-hero-slider {
   
   height: 300px;

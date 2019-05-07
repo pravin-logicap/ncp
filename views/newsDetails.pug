@@ -38,16 +38,19 @@ head
         #tmNavbar.collapse.navbar-toggleable-md.text-xs-center.text-uppercase.tm-navbar
           ul.nav.navbar-nav
             li.nav-item.active.selected
-              a.nav-link(href='#0' data-no='1')
-                | Leaders 
+              a.nav-link(href='#0' data-no='1' onclick="leaderSelected(0)")
+                | Home 
                 span.sr-only (current)
+            li.nav-item.active.selected
+              a.nav-link(data-no='2' onclick="leaderSelected(1)")
+                | Prev
+            li.nav-item.active.selected
+              a.nav-link(data-no='3')
+                | next        
             //li.nav-item
               a.nav-link(href='#0' data-no='5') Keep in touch
-  ul.cd-hero-slider
-#loader-wrapper
-  #loader
-  .loader-section.section-left
-  .loader-section.section-right
+.cd-news            
+  iframe#iframenews.frame-news(src=dummyData.response_data.result[0].breakingNews.imaageVideoUrl type='text/html') 
 // load JS files
 script(src='js/jquery-1.11.3.min.js')
 // jQuery (https://jquery.com/download/)
@@ -60,17 +63,24 @@ script(src='js/hero-slider-main.js')
 script(src='js/jquery.magnific-popup.min.js')
 // Magnific popup (http://dimsemenov.com/plugins/magnific-popup/)
 script.
-  function leaderSelected() {
-    alert(" You have clicked : ");
-    var jqxhr = $.get( "/dashboard", function(res) {
-    })
-      .done(function(res) {
-        window.location.href = "/dashboard";
-        //alert( "second success "+JSON.stringify(res)  );
-      })
-      .fail(function() {
-        alert( "error" );
-      });
+  var dummyData = #{dummyData}
+  var newsCounter = 0;
+  function leaderSelected(index) {
+    alert(" You have clicked : "+JSON.stringify(dummyData));
+    if(index == 0){
+       window.location.href = "/dashboard";
+    }else{
+      // $('frame-news').src(dummyData.response_data.result[1].breakingNews.imaageVideoUrl)
+     if(index == 1 && newsCounter < dummyData.response_data.result.length ){
+       newsCounter++;
+       document.getElementById('iframenews').src = dummyData.response_data.result[newsCounter].breakingNews.imaageVideoUrl;
+     }else{
+       newsCounter--;
+       document.getElementById('iframenews').src = dummyData.response_data.result[newsCounter].breakingNews.imaageVideoUrl;
+     } 
+     
+      // $('#frame-news').attr('src','https://www.bbc.com/marathi/india-48166368');
+    }
   }
   function adjustHeightOfPage(pageNo) {
   var offset = 80;

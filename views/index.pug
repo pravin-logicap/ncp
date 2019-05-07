@@ -193,7 +193,7 @@ head
                     a(href='img/tm-img-16.jpg') View more
     // Page 4 About
     li
-      .cd-full-width
+      .cd-full-width(z-index = '-1')
         .container-fluid.js-tm-page-content.tm-page-width.tm-pad-b(data-page-no='4')
           .row.tm-white-box-margin-b
             .col-xs-12
@@ -284,15 +284,7 @@ script(src='js/jquery.magnific-popup.min.js')
 // Magnific popup (http://dimsemenov.com/plugins/magnific-popup/)
 script.
   function imageSelected(index) {
-    var jqxhr = $.get( "/newsReports?indexNo="+(index+1), function(res) {
-    })
-      .done(function(res) {
-        window.location.href = "/newsReports?indexNo="+(index+1);
-        //alert( "second success "+JSON.stringify(res)  );
-      })
-      .fail(function() {
-        alert( "error" );
-      });
+       window.location.href = "/newsReports?indexNo="+(index+1);
   }
   function adjustHeightOfPage(pageNo) {
   var offset = 80;
